@@ -8,6 +8,7 @@ import { addUser } from "../redux/userSlice";
 const Login = () => {
   const [emailId, setEmailId] = useState("metilda@gmail.com");
   const [password, setPassword] = useState("Metilda@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const Login = () => {
       dispatch(addUser(res.data));
       navigate("/");
     } catch (err) {
+      setError(err?.response?.data || "Something went wrong:(");
       console.log(err.message);
     }
   };
@@ -57,6 +59,7 @@ const Login = () => {
               className="input input-bordered w-full max-w-xs"
             />
           </label>
+          {error && <p className="text-red-600">{error}</p>}
           <div className="card-actions w-full pt-4">
             <button onClick={handleLogin} className="btn btn-primary w-full">
               Login

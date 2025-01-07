@@ -30,4 +30,5 @@ Route = /profile => Profile
 19. Refactor code with constants folder
 20. User should not be able to access other routes without login
 21. If token is not present, redirect user to login page.
-22.
+22. profile
+23. logout
