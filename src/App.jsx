@@ -1,9 +1,9 @@
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Body } from "./Body";
 import Login from "./pages/Login";
 import { Profile } from "./pages/Profile";
-import appStore from "./utils/appStore";
+import { Body } from "./pages/Body";
+import appStore from "./redux/appStore";
 import Feed from "./pages/Feed";
 
 function App() {
