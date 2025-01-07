@@ -28,3 +28,6 @@ Route = /profile => Profile
 17. Add redux devtools in chrome
 18. Update the navbar as soon as user login
 19. Refactor code with constants folder
+20. User should not be able to access other routes without login
+21. If token is not present, redirect user to login page.
+22.
