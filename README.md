@@ -23,3 +23,8 @@ Route = /profile => Profile
 12. Install axios
 13. CORS - install cors in backend => add middleware with configurations: origin and credentials: true
 14. When ever making API calls pass axios = {withCredentials: true}
+15. Install react-redux + @reduxjs/toolkit (Redux Toolkit)
+16. ConfigureStore => Provider => createSlice => add reducer to store
+17. Add redux devtools in chrome
+18. Update the navbar as soon as user login
+19. Refactor code with constants folder
