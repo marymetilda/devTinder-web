@@ -26,7 +26,12 @@ const Connections = () => {
 
   if (!connection) return;
 
-  if (connection.length === 0) return <div>No Connections Found!</div>;
+  if (connection.length === 0)
+    return (
+      <div className="flex items-center justify-center mt-10">
+        No Connections Found!
+      </div>
+    );
 
   return (
     <div className="mt-8">
@@ -34,10 +39,11 @@ const Connections = () => {
 
       <div className="w-full flex flex-col items-center justify-center gap-8 pt-8">
         {connection.map((con) => {
-          const { firstName, lastName, age, gender, about, photoURL } = con;
+          const { _id, firstName, lastName, age, gender, about, photoURL } =
+            con;
           return (
             <div
-              key={firstName}
+              key={_id}
               className="card card-side bg-base-300 shadow-xl w-1/2"
             >
               <figure className="p-4">

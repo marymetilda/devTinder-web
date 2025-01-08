@@ -7,6 +7,7 @@ import appStore from "./redux/appStore";
 import Feed from "./pages/Feed";
 import Error from "./pages/Error";
 import Connections from "./pages/Connections";
+import Requests from "./pages/Requests";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/connections" element={<Connections />} />
-              <Route path="/requests" element={<Profile />} />
+              <Route path="/requests" element={<Requests />} />
               <Route path="/error" element={<Error />} />
             </Route>
           </Routes>

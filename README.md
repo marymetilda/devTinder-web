@@ -33,3 +33,7 @@ Route = /profile => Profile
 22. profile
 23. logout
 24. Build UserCard component and call it inside feed
+25. Edit profile feature
+26. Show toast message on save of profile
+27. New page to see all connections
+28. New page to see all requests
