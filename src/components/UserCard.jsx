@@ -5,8 +5,8 @@ const UserCard = ({ user }) => {
 
   return (
     <div className="card bg-base-300 w-96 shadow-xl">
-      <figure className="px-8 pt-8">
-        <img src={photoURL} alt="Photo" />
+      <figure className="px-8 mt-8 h-80">
+        <img className="object-contain object-top" src={photoURL} alt="Photo" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{firstName + " " + lastName}</h2>
