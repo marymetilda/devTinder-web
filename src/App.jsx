@@ -6,6 +6,7 @@ import { Body } from "./pages/Body";
 import appStore from "./redux/appStore";
 import Feed from "./pages/Feed";
 import Error from "./pages/Error";
+import Connections from "./pages/Connections";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
               <Route path="/" element={<Feed />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/requests" element={<Profile />} />
               <Route path="/error" element={<Error />} />
             </Route>
           </Routes>
