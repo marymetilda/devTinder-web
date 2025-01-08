@@ -32,3 +32,4 @@ Route = /profile => Profile
 21. If token is not present, redirect user to login page.
 22. profile
 23. logout
+24. Build UserCard component and call it inside feed
