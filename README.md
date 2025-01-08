@@ -37,3 +37,8 @@ Route = /profile => Profile
 26. Show toast message on save of profile
 27. New page to see all connections
 28. New page to see all requests
+29. Feature - Accept/Reject connection requests
+
+30. Send/ignore the user card from feed
+31. Sign up new user
+32. E2E Testing
