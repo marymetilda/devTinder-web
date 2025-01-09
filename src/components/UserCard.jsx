@@ -1,7 +1,27 @@
 /* eslint-disable react/prop-types */
 
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeUserFromFeed } from "../redux/feedSlice";
+
 const UserCard = ({ user }) => {
-  const { firstName, lastName, age, gender, photoURL, about } = user;
+  const { _id, firstName, lastName, age, gender, photoURL, about } = user;
+  const dispatch = useDispatch();
+
+  const handleSendRequest = async (status, userId) => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/send/" + status + "/" + userId,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeUserFromFeed(userId));
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="card bg-base-300 w-96 shadow-xl">
@@ -13,8 +33,18 @@ const UserCard = ({ user }) => {
         {age && gender && <p>{age + " " + gender}</p>}
         <p>{about}</p>
         <div className="card-actions justify-center pt-2">
-          <button className="btn btn-primary">Ignore</button>
-          <button className="btn btn-secondary">Send Request</button>
+          <button
+            onClick={() => handleSendRequest("ignored", _id)}
+            className="btn btn-primary"
+          >
+            Ignore
+          </button>
+          <button
+            onClick={() => handleSendRequest("interested", _id)}
+            className="btn btn-secondary"
+          >
+            Send Request
+          </button>
         </div>
       </div>
     </div>

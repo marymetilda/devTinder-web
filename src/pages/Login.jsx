@@ -6,8 +6,11 @@ import { BASE_URL } from "../utils/constants";
 import { addUser } from "../redux/userSlice";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("metilda@gmail.com");
-  const [password, setPassword] = useState("Metilda@123");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,11 +33,59 @@ const Login = () => {
     }
   };
 
+  const handleSignUp = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        {
+          firstName,
+          lastName,
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data.data));
+      navigate("/profile");
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong:(");
+      console.log(err.message);
+    }
+  };
+
   return (
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 w-96 shadow-xl">
         <div className="card-body flex items-center w-full">
-          <h2 className="card-title">Login</h2>
+          <h2 className="card-title">{isLoginForm ? "Login" : "Sign Up"}</h2>
+          {!isLoginForm && (
+            <>
+              <label className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">First Name</span>
+                </div>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </label>
+              <label className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">Last Name</span>
+                </div>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </label>
+            </>
+          )}
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">Email ID</span>
@@ -43,7 +94,7 @@ const Login = () => {
               type="text"
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
-              placeholder="Type here"
+              placeholder="user@gmail.com"
               className="input input-bordered w-full max-w-xs"
             />
           </label>
@@ -52,18 +103,44 @@ const Login = () => {
               <span className="label-text">Password</span>
             </div>
             <input
-              type="text"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Type here"
+              placeholder="password"
               className="input input-bordered w-full max-w-xs"
             />
           </label>
           {error && <p className="text-red-600">{error}</p>}
           <div className="card-actions w-full pt-4">
-            <button onClick={handleLogin} className="btn btn-primary w-full">
-              Login
+            <button
+              onClick={isLoginForm ? handleLogin : handleSignUp}
+              className="btn btn-primary w-full"
+            >
+              {isLoginForm ? "Login" : "Sign Up"}
             </button>
+          </div>
+          <div>
+            {isLoginForm ? (
+              <p>
+                New User?{" "}
+                <button
+                  className="cursor-pointer"
+                  onClick={() => setIsLoginForm((value) => !value)}
+                >
+                  Sign up Here
+                </button>
+              </p>
+            ) : (
+              <p>
+                Already a user?{" "}
+                <button
+                  className="cursor-pointer"
+                  onClick={() => setIsLoginForm((value) => !value)}
+                >
+                  Login Here
+                </button>
+              </p>
+            )}
           </div>
         </div>
       </div>
